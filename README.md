@@ -11,3 +11,6 @@ lab2:
 
 lab3:
 This Java code  defines a base class Employee with attributes and methods for employee details and bonus calculation, which can be overridden by derived classes. The derived classes HourlyEmployee, SalariedEmployee, and ExecutiveEmployee represent different types of employees, each with specific salary calculations and bonus structures. The Lab3 class serves as the main entry point, where instances of these employee types are created and their information is displayed, showcasing  inheritance in action.
+
+lab4:
+This Java code defines an abstract class Robber with methods for calculating the maximum amount of money that can be robbed from different types of house arrangements, including row houses, round houses, square houses, and multi-house buildings. The class JAVAProfessionalRobber extends Robber and provides concrete implementations for these methods using dynamic programming and array manipulation techniques. The Lab4 class serves as the main entry point, where an instance of JAVAProfessionalRobber is created to demonstrate the functionality of the various robbery strategies, printing the maximum money that can be obtained from each house arrangement, and showcasing the use of inheritance and polymorphism in Java.
