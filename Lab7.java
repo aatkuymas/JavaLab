@@ -72,8 +72,6 @@ class Order {
         return "Order{orderId='" + orderId + "', customerId='" + customerId + "', productIds=" + productIds + ", deliveryDate='" + deliveryDate + "'}";
     }
 }
-
-
 public class Lab7 {
     public static void main(String[] args) {
         // ArrayLists to store data
@@ -117,30 +115,107 @@ public class Lab7 {
         TreeSet<Customer> sortedCustomers = new TreeSet<>(new SortByLoyaltyPoints());
         sortedCustomers.addAll(customers);
 
-        // Display Data
-        System.out.println("Customers:");
-        for (Customer customer : customers) {
-            System.out.println(customer);
-        }
+        // Scanner for menu-driven interface
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Add Customer");
+            System.out.println("2. Add Product");
+            System.out.println("3. Add Order");
+            System.out.println("4. Display Customers");
+            System.out.println("5. Display Products");
+            System.out.println("6. Display Orders");
+            System.out.println("7. Sort Customers by Loyalty Points");
+            System.out.println("8. Sort Products by Price");
+            System.out.println("9. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
 
-        System.out.println("\nProducts:");
-        for (Product product : products) {
-            System.out.println(product);
-        }
-
-        System.out.println("\nOrders:");
-        for (Order order : orders) {
-            System.out.println(order);
-        }
-
-        System.out.println("\nSorted Products by Price:");
-        for (Product product : sortedProducts) {
-            System.out.println(product);
-        }
-
-        System.out.println("\nSorted Customers by Loyalty Points:");
-        for (Customer customer : sortedCustomers) {
-            System.out.println(customer);
+            switch (choice) {
+                case 1:
+                    // Add Customer
+                    System.out.print("Enter Customer ID: ");
+                    String customerId = scanner.next();
+                    System.out.print("Enter Customer Name: ");
+                    String customerName = scanner.next();
+                    System.out.print("Enter Loyalty Points: ");
+                    int loyaltyPoints = scanner.nextInt();
+                    customers.add(new Customer(customerId, customerName, loyaltyPoints));
+                    customerMap.put(customerId, new Customer(customerId, customerName, loyaltyPoints));
+                    break;
+                case 2:
+                    // Add Product
+                    System.out.print("Enter Product ID: ");
+                    String productId = scanner.next();
+                    System.out.print("Enter Product Name: ");
+                    String productName = scanner.next();
+                    System.out.print("Enter Product Price: ");
+                    double productPrice = scanner.nextDouble();
+                    products.add(new Product(productId, productName, productPrice));
+                    productMap.put(productId, new Product(productId, productName, productPrice));
+                    break;
+                case 3:
+                    // Add Order
+                    System.out.print("Enter Order ID: ");
+                    String orderId = scanner.next();
+                    System.out.print("Enter Customer ID: ");
+                    String orderCustomerId = scanner.next();
+                    System.out.print("Enter Product IDs (comma separated): ");
+                    scanner.nextLine(); // consume the newline character
+                    String productIdsInput = scanner.nextLine();
+                    List<String> orderProductIds = Arrays.asList(productIdsInput.split(","));
+                    System.out.print("Enter Delivery Date: ");
+                    String deliveryDate = scanner.next();
+                    orders.add(new Order(orderId, orderCustomerId, orderProductIds, deliveryDate));
+                    break;
+                case 4:
+                    // Display Customers
+                    System.out.println("Customers:");
+                    for (Customer customer : customers) {
+                        System.out.println(customer);
+                    }
+                    break;
+                case 5:
+                    // Display Products
+                    System.out.println("Products:");
+                    for (Product product : products) {
+                        System.out.println(product);
+                    }
+                    break;
+                case 6:
+                    // Display Orders
+                    System.out.println("Orders:");
+                    for (Order order : orders) {
+                        System.out.println(order);
+                    }
+                    break;
+                case 7:
+                    // Sort and Display Customers by Loyalty Points
+                    sortedCustomers.clear();
+                    sortedCustomers.addAll(customers);
+                    System.out.println("Sorted Customers by Loyalty Points:");
+                    for (Customer customer : sortedCustomers) {
+                        System.out.println(customer);
+                    }
+                    break;
+                case 8:
+                    // Sort and Display Products by Price
+                    sortedProducts.clear();
+                    sortedProducts.addAll(products);
+                    System.out.println("Sorted Products by Price:");
+                    for (Product product : sortedProducts) {
+                        System.out.println(product);
+                    }
+                    break;
+                case 9:
+                    // Exit
+                    System.out.println("Exiting program.");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
         }
     }
 }
